@@ -1,0 +1,201 @@
+ <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鲜满宫堂</title>
+    <style>
+		.text{
+			height: 60vh;
+			position: relative;
+			background-color: rgba(238,222,199,0.85);
+		}
+		.text h1{
+			color: rgba(96,49,11,1);
+			font-size: 24px;
+			position: absolute;
+			left: 5%;
+		}
+		.text h2{
+			color: rgba(96,49,11,1);
+			font-size: 24px;
+			position: absolute;
+			left: 60%;
+			top: 0;
+		}
+		.text>img{
+			position: absolute;
+			left: 34%;
+		}
+		
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            margin: 0;
+			padding: 0;
+			height: 750vh;
+        }
+        .img{
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            background-image: url(cat.gif);
+            background-size: cover;
+        }
+		.mm1{
+			background-size: cover;
+			height: 150vh;
+		}
+		
+		
+		
+		
+		
+		.ming{
+			height: 200px;
+			top: 90%;
+			left: 2%;
+			position: relative;
+			perspective: 800px;
+			transform-style: preserve-3d;
+		}
+		.pian{
+			position: absolute;
+			height: 120px;
+			width: 210px;
+			transform: translateX(5px) rotateY(30deg) rotateX(10deg);
+			background-color: rgba(255,255,255,0.95);
+			display: flex;
+			align-items: center;
+		}
+		.pian .w0{
+			background-color: rgba(96,49,11,1);
+			line-height: 1;
+			color: #fff;
+			padding: 0 10px;
+			margin: 0 15px 0 10px;
+			display: inline-flex;
+			
+		}
+		.pian .w1{
+			color: rgba(96,49,11,1);
+		}
+		.ming::before {
+			content: '';
+			height: 120px;
+			width: 210px;
+			position: absolute;
+			margin-top: -5px;
+			margin-left: -5px;
+			border: 5px solid rgba(96,49,11,1);
+			transform: translateX(-5px) rotateY(-40deg) rotateX(20deg) scale(1.05);
+		}
+		.ming:hover>div,
+		.ming:hover::before{
+			transform: none;
+		}
+		.ming>div,
+		.ming:hover::before{
+			transition: .3s;
+		}
+    </style>
+</head>
+
+<body>
+    <div class="img"></div>
+</body>
+    <script>
+        let img = document.querySelector('.img')
+        // 定义小图片的旋转角度
+        let deg = 0
+        // 定义小图片位于网页左侧的位置
+        let imgx = 0
+        // 定义小图片位于网页顶部的位置
+        let imgy = 0
+        // 定义小图片x轴的位置
+        let imgl = 0
+        // 定义小图片y轴的位置
+        let imgt = 0
+        // 定义小图片翻转的角度
+        let y = 0 
+        // 定义一个计数器
+        let index = 0
+
+        window.addEventListener('mousemove',function(xyz){
+            // 获取网页左侧距离的图片位置
+            imgx = window.pageXOffset + xyz.x - img.offsetLeft - img.clientWidth /2
+            // 多去网页顶部距离图片的位置
+            imgy = window.pageYOffset + xyz.y - img.offsetTop - img.clientHeight /2
+            // 套入公式，定义图片的旋转角度
+            deg = 360*Math.atan(imgy/imgx)/(2*Math.PI)
+            // 每当鼠标移动的时候重置index
+            index= 0
+            // 定义当前鼠标的位置
+            let x = event.clientX
+            // 当鼠标的x轴大于图片的时候，提普安就要对着鼠标，所以需要将图片翻转过来
+            // 否则就不用翻转
+            if(img.offsetLeft<x){
+                y=-180
+            }else{
+                y=0
+            }
+			
+            
+        })
+        setInterval(()=>{
+            // 设置小图片的旋转和翻转
+            img.style.transform = "rotateZ("+deg+"deg) rotateY("+y+"deg)"
+            index++
+            // 在这里设置小图片的位置和速度，并判断小图片到达鼠标位置时停止移动
+            if(index<50){
+                imgl+=imgx/50
+                imgt+=imgy/50
+            }
+            img.style.left = window.pageXOffset + imgl+"px"
+            img.style.top = window.pageYOffset + imgt+"px"
+        },10)
+		
+    </script>
+	<div class="mm1" style="background-image: url(3.1.png)"></div>
+	<div class="text">
+
+			<h1><br>《穿越究竟为哪般篇》<br><br>赵氏：这是苏家祖传的菜谱<br>小鱼(主角)：穿越原来是为了发家致富↖（＾ω＾）↗<br>太后：这是皇家的宗族秘史<br>小鱼：穿越原来是为了宫斗升级( ⊙ o ⊙ ) <br>国师：这是神秘的武功秘籍<br>小鱼：穿越原来是为了拯救苍生(⊙_⊙) <br>皇帝(喵攻)：喵呜~朕今天要吃红烧鱼香辣蟹油焖大虾~<br>小鱼：穿越其实是喂猫来的……吧</h1>
+		<h2><br>小时候，为了争得养育贵子的权利……<br>妃嫔甲：我有无双的医术，保你安枕无忧<br>妃嫔乙：我有绝顶的智慧，保你笨鸟先飞<br>妃嫔丙：我有强大的母家，保你登上皇位<br>太后：……我有布老鼠<br>离王、景王：麻麻~~~(⊙ω⊙) <br><br>为了争夺跟皇长子玩耍的权利……<br>十七叔：我有画了九饼的毛肚皮<br>十三叔：我有黑白条的大尾巴<br>弟弟：我有红色的大老苏！<br>小鱼：我有鱼肉糊糊、虾肉糊糊、蟹肉糊糊……<br>大毛：咪？（刚满月，听不懂人话）</h2>
+			
+		</div>
+	<div class="mm1" style="background-image: url(3.2.png)"></div>
+	<div class="text">
+
+			<h1><br>《皇权争夺是很凶残的篇》<br><br>喵攻：父皇，朕身体不好，还是您来理政吧<br>喵爹：寡人年老体弱，不宜操劳<br>喵攻：七叔，你与父皇一样，不如……<br>七叔：当年夺位，我已心灰意冷，不愿再回朝堂<br>喵攻：三哥……<br>景王：嗷嗷，别跟我说话，双十二大甩卖了，海怪降价处理，只要998！<br>喵攻：……</h1>
+			<h2><br>安国塔课堂答疑小鱼：<br><br>山河图鉴跟鱼有什么关系？<br>十三叔：山河事关社稷！<br>十七叔：图鉴事关祖训！<br>国师：山河图鉴事关国运！<br>小鱼：……<br>安家祖训：固我河山，守我鲜鱼！</h2>
+		</div>
+		<div class="mm1" style="background-image: url(3.4.png)"></div>
+	<div class="text">
+
+			<h1><br>关于去海上远征营救太上皇……<br><br>喵攻：这船似乎缺了点什么<br>景王：要加上网，打架的时候别飞出去<br>十七叔：要种上狗尾巴草，清新空气<br>十三叔：要放几个烧烤炉子，晚上喝啤酒<br>国师：把整个甲板换成软垫，本座要夜观星象<br>弟弟：……这样尊的能把父皇找回来么？</h1>
+			<h2><br>见到太上皇之后……<br><br>喵爹：说好的营救父皇我呢？<br>七叔：说好的救皇叔于水火呢？<br>五伯：过来，伯父要跟你们谈谈人生。<br>九叔：（左右看，想不出要说什么）对，过来！<br>喵攻、景王、太纸：好多鱼，吃的！<br>国师：阳光正好，适合观星(睡觉)<br>十七叔：老鼠老鼠老鼠老鼠！</h2>
+		<img src="3.9.4.png" alt="">
+		</div>
+	<div class="mm1" style="background-image: url(3.10.png)"></div>
+	<div class="text">
+
+			<h1><br>在得知荒岛的神奇屏障之后……<br>喵攻：这么说的话，只有跟皇家有关的才能上岛<br>小鱼：上古神兽果然厉害<br>喵攻：那以前鲛人怎么靠近的？<br>皇祖叔：食物当然可以靠近(⊙ω⊙) <br><br>小鱼：祖宗，给我摸摸毛毛（?﹃?）<br>景王：这么大只！来打一架！<br>忠王：祖宗，我给你讲讲安家的发家史吧<br>国师：（抬爪，拍）竟然拍不动！<br>喵攻：……</h1>
+		<h2><br>《储君的教育要从毛球抓起篇》<br><br>喵攻：（仰头）作为太子，要有威严<br>太纸：（仰头）咪呜<br>喵攻：（抬爪）作为太子，要有气势<br>太纸：（抬爪）咪！<br>喵攻：（语重心长）作为太子，更要独立<br>太纸：咪？<br>喵攻；(╰_╯)#从老子的肚皮上下去</h2>
+			<img src="3.8.1.png" alt="">
+		</div>
+	
+	<div class="mm1" style="background-image: url(3.5.png)">
+	<a href="https://wuojinhuaiyu.github.io/DSY.github.io/" class="ming">
+		<div class="pian">
+			<h1><span class="w0">DSY</span><span class="w1">Back</span></h1>
+		</div></a>
+	</div>
+		
+	
+	
+</html>
